@@ -1,5 +1,5 @@
-public class Main {
-    public static void EjercicioPropuesto04(String[] args) {
+public class EjercicioPropuesto04 {
+    public static void main(String[] args) {
         double num1 = 5.3;
         double num2 = 2.8;
         double num3 = 7.6;
