@@ -1,0 +1,31 @@
+CUESTIONARIO
+1. ¿Qué es una IP?
+Es un protocolo usado tanto por el origen como por el destino para la comunicación de
+datos a través de una red local o internet.
+
+2. Defina con sus palabras que es un localhost.
+Es una dirección IP que se utiliza para hacer referencia al propio ordenador.
+
+3. Mencione algunas recomendaciones en la nomenclatura de los archivos.
+- Usar nombres descriptivos y claros.
+- Evitar espacios; en su lugar, usar guiones o guiones bajos.
+- Utilizar minúsculas para evitar problemas de compatibilidad en sistemas operativos sensibles a mayúsculas.
+
+4. Indique tres herramientas similares a Xampp.
+- WAMP
+- MAMP
+- LAMP
+
+5. ¿Cuál es la utilidad de Apache Server?
+La función principal de Apache Server es servir contenido web a los usuarios a través de un servidor web
+
+6. ¿En qué se diferencia MariaDB y MySQL?
+
+
+7. ¿Cuáles son los puertos reservados?
+
+8. Mencione la diferencia entre el puerto 80 y 8080.
+
+9. ¿Qué pasos se debe seguir para configurar el Filezilla?
+
+10. ¿Qué pasos se debe seguir para crear un subdominio?
