@@ -1,56 +1,105 @@
 package Actividades;
 
 public class Coche {
-    private String marca;
-    private int aniodefabricacion;
-    private double precio;
-    public String modelo;
-    
-    public Coche(String marca, String modelo, int aniodefabricacion, double precio) {
-        this.marca = marca;
-        this.modelo = modelo;
-        this.aniodefabricacion = aniodefabricacion;
-        this.precio = precio;
-    }
-    
-    public String getMarca() {
-        return marca;
-    }
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-    public int getAniodefabricacion() {
-        return aniodefabricacion;
-    }
-    public void setAniodefabricacion(int aniodefabricacion) {
-        this.aniodefabricacion = aniodefabricacion;
-    }
-    public double getPrecio() {
-        return precio;
-    }
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-    
-    public boolean aplicarDescuento(double descuento) {
-        if (aniodefabricacion >= 2010) {
-            return false;
-        } else {
-            this.precio -= descuento;
-            return true;
-        }
-    }
+	// Atributos
+	public String color;
+	private String modelo;
+	private int velocidadMaxima;
+	private int potenciaMotor;
+	private boolean enMarcha;
+	
+	private String marca;
+	private int an_fabri;
+	private double precio;
+	
+	public Coche(String modelo, int velocidadMaxima, int potenciaMotor) {
+		this.modelo = modelo;
+		this.velocidadMaxima = velocidadMaxima;
+		this.potenciaMotor = potenciaMotor;
+		this.enMarcha = false;
+	}
+	
+	public Coche(){
+		this.modelo = "";
+		this.velocidadMaxima = 0;
+		this.potenciaMotor = 0;
+		this.enMarcha = false;
+		this.marca = "";
+		this.an_fabri = 0;
+		this.precio = 0.00;
+	}
+	
+	public Coche(String marca,String modelo,int anio,double precio) {
+		this.modelo = modelo;
+		this.velocidadMaxima = 0;
+		this.potenciaMotor = 0;
+		this.enMarcha = false;
+		this.marca = marca;
+		this.an_fabri = anio;
+		this.precio = precio;
+	}
+	
+	// Metodos
+	public void acelerar() {
+		if (enMarcha) {
+			System.out.println("El coche " + modelo + " esta acelerando.");
+		} else {
+			System.out.println("Primero enciende el coche.");
+		}
+	}
+	public void frenar() {
+		if (enMarcha) {
+			System.out.println("El coche " + modelo + " esta frenando.");
+		} else {
+			System.out.println("El coche esta apagado, no se puede frenar.");
+		}
+	}
+	
+	public void encender() {
+		enMarcha = true;
+		System.out.println("El coche " + modelo + " se ha encendido.");
+	}
+	public void apagar() {
+		enMarcha = false;
+		System.out.println("El coche " + modelo + " se ha apagado.");
+	}
+	public String getModelo() {
+		return this.modelo;
+	}
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+	public void aplicarDescuento() {
+		if(this.an_fabri < 2010) {
+			//Teniendo en cuenta que se aplica un descuento de 200.00S
+			this.precio -= 200.00;
+			System.out.println("Descuento aplicado: " + this.precio);
+		}else {
+			System.out.println("No se puede aplicar el descuento - Modelo reciente: " + this.an_fabri);
+		}
+	}
 
-    public static void main(String[] args) {
-        Coche c1 = new Coche("Hyundai", "Santafe", 2015, 150000);
-        Coche c2 = new Coche("Toyota", "Yaris", 2009, 50000);
-        
-        boolean descuentoAplicadoc1 = c1.aplicarDescuento(5000);
-        System.out.println("Descuento aplicado: " + descuentoAplicadoc1);
-        System.out.println("Precio después del descuento: " + c1.getPrecio());
-        
-        boolean descuentoAplicadoc2 = c2.aplicarDescuento(2000);
-        System.out.println("Descuento aplicado: " + descuentoAplicadoc2);
-        System.out.println("Precio después del descuento: " + c2.getPrecio());
-    }
+	public String getMarca() {
+		return this.marca;
+	}
+	public void setMarca(String marca) {
+		this.marca = marca;
+	}
+	public int getAnio() {
+		return this.an_fabri;
+	}
+	public void setAnio(int anio) {
+		this.an_fabri = anio;
+	}
+	public double getPrecio() {
+		return this.precio;
+	}
+	public void setPrecio(double precio){
+		if(precio < 0) {
+			System.out.println("Precio no valido.");
+		}else {
+			this.precio = precio;
+		}
+	}
+
 }
