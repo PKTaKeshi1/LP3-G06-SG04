@@ -1,4 +1,3 @@
-package s07eje2;
 public class Personaje {
     private String nombre;
     private int vida;
