@@ -1,4 +1,3 @@
-package s07eje2;
 import java.io.*;
 import java.util.*;
 public class Gestor {
