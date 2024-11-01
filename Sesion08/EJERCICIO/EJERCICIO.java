@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Scanner;
 public class EJERCICIO {
-    private static final String DB = "jdbc:sqlite:ejemplo.db"; 
+    
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
             Class.forName("org.sqlite.JDBC"); //PASO 1 REGISTRA EL DRIVER
-            Connection con = DriverManager.getConnection(DB);  // PASO 2 SE CREA EL OBJETO "con" para validar la conexion
+            Connection con = DriverManager.getConnection("jdbc:sqlite:ejemplo.db");  // PASO 2 SE CREA EL OBJETO "con" para validar la conexion
             con.setAutoCommit(false);
 			if (con != null) { 
 				System.out.println("Se creo y/o abrio la base de datos: "); 
@@ -79,6 +79,7 @@ public class EJERCICIO {
         // Confirmación
         if (confirmAction(scanner, "COLOCA LA CLAVE PARA CONFIRMAR TU ACCION")) {
         	con.commit();// GUARDAR REGISTRO
+        	  System.out.println("Operación exitosa.");
         } else {
         	con.rollback();// NO GUARDAR REGISTRO
             System.out.println("Operación cancelada.");
@@ -87,17 +88,23 @@ public class EJERCICIO {
     private static void deleteRecord(Scanner scanner, Connection con) throws Exception {
         System.out.print("Ingrese ID del registro a eliminar: ");
         int id = scanner.nextInt();
-        scanner.nextLine();//limpiar buffer
+        scanner.nextLine(); // Limpiar el buffer
         // Confirmación
         if (confirmAction(scanner, "COLOCA LA CLAVE PARA CONFIRMAR TU ACCION")) {
             PreparedStatement deleteStmt = con.prepareStatement("DELETE FROM emp WHERE id = ?");
             deleteStmt.setInt(1, id);
             int rowsDeleted = deleteStmt.executeUpdate();
-            System.out.println(rowsDeleted + " registro(s) eliminado(s).");
+            if (rowsDeleted > 0) {
+                con.commit(); // Aplicar la transacción si se eliminó algún registro
+                System.out.println(rowsDeleted + " registro(s) eliminado(s).");
+            } else {
+                System.out.println("No se encontró el registro con el ID especificado.");
+            }
         } else {
             System.out.println("Operación cancelada.");
         }
     }
+
     private static void updateRecord(Scanner scanner, Connection con) throws Exception {
         System.out.print("Ingrese ID del registro a actualizar: ");
         int id = scanner.nextInt();
