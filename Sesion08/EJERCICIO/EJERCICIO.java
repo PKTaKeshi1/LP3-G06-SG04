@@ -10,9 +10,12 @@ public class EJERCICIO {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         try {
-            Class.forName("org.sqlite.JDBC");
-            Connection con = DriverManager.getConnection(DB);
-            System.out.println("Se creó y/o abrió la base de datos.");
+            Class.forName("org.sqlite.JDBC"); //PASO 1 REGISTRA EL DRIVER
+            Connection con = DriverManager.getConnection(DB);  // PASO 2 SE CREA EL OBJETO "con" para validar la conexion
+            con.setAutoCommit(false);
+			if (con != null) { 
+				System.out.println("Se creo y/o abrio la base de datos: "); 
+				} 
             // Creación de la tabla con 4 campos
             Statement stmt = con.createStatement();
             stmt.execute("CREATE TABLE IF NOT EXISTS emp (id INTEGER PRIMARY KEY, name TEXT, age INTEGER, department TEXT);");
@@ -66,16 +69,18 @@ public class EJERCICIO {
         scanner.nextLine(); // Limpiar el buffer
         System.out.print("Ingrese departamento: ");
         String department = scanner.nextLine();
+        PreparedStatement insertStmt = con.prepareStatement("INSERT INTO emp (id, name, age, department) VALUES (?, ?, ?, ?)");
+        insertStmt.setInt(1, id);
+        insertStmt.setString(2, name);
+        insertStmt.setInt(3, age);
+        insertStmt.setString(4, department);
+        insertStmt.executeUpdate();        
+        System.out.println("Registro insertado.");
         // Confirmación
         if (confirmAction(scanner, "COLOCA LA CLAVE PARA CONFIRMAR TU ACCION")) {
-            PreparedStatement insertStmt = con.prepareStatement("INSERT INTO emp (id, name, age, department) VALUES (?, ?, ?, ?)");
-            insertStmt.setInt(1, id);
-            insertStmt.setString(2, name);
-            insertStmt.setInt(3, age);
-            insertStmt.setString(4, department);
-            insertStmt.executeUpdate();
-            System.out.println("Registro insertado.");
+        	con.commit();// GUARDAR REGISTRO
         } else {
+        	con.rollback();// NO GUARDAR REGISTRO
             System.out.println("Operación cancelada.");
         }
     }
@@ -128,3 +133,4 @@ public class EJERCICIO {
         return response.equals("secreto");
     }
 }
+
