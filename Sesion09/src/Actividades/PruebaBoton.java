@@ -1,0 +1,12 @@
+package s09;
+import javax.swing.JFrame;
+public class PruebaBoton {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		MarcoBoton marcoBoton = new MarcoBoton();
+		marcoBoton.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		marcoBoton.setSize (275, 210);
+		marcoBoton.setVisible(true);
+		}
+		} // fin de la clase PruebaBoton
