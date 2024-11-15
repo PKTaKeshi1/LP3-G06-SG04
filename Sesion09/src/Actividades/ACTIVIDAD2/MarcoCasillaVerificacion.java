@@ -13,7 +13,7 @@ private JCheckBox negritaJCheckBox; // para seleccionar/deseleccionar negrita
 private JCheckBox cursivaJCheckBox; // para seleccionar/deseleccionar cursiva
 // El constructor de MarcoCasillaVerificacion agrega objetos JCheckBox a JFrame
 public MarcoCasillaVerificacion() {
-super ("Prueba de JCheckBox");
+super ("Prueba de JCheckBox, Sergio ayala , Edwin herrera");
 setLayout(new FlowLayout());
 // establece JTextField y su tipo de letra
 campoTexto = new JTextField("Observe como cambia el estilo de tipo de letra", 20);
