@@ -3,7 +3,6 @@ public class Pila<E> {
     private final int tamanio;
     private int superior;
     private E[] elementos;
-
     public Pila() {
         this(10);
     }
@@ -46,5 +45,6 @@ public class Pila<E> {
         }
     }
 }
+
 
 
